@@ -19,23 +19,23 @@ Postdoctoral scholar, Genome Science – Case Western Reserve University	2015–
 
 ### SKILLS
 
-1. R programming:
+**R programming**
 
 Flow cytometry data analysis, genome-wide CRISPR screen data analysis [1]
 
-2. Python
+**Python**
 
 Practice through several online courses
 
-3. Statistical analysis
+**Statistical analysis**
 
 Multivariate regression, ROC curves [2], Genome-wide association study [7, 8]
 
-4. Meta-analysis
+**Meta-analysis**
 
 Systematical gene-expression analysis [3]
 
-5. Molecular and cell biology
+**Molecular and cell biology**
 
 Stem-cell differentiation [unpbulished], lentivirus [1], genome editing [1], Chromosome Conformation Capture [unpublished], general molecular and cell biology [1, 3, 4, 5, 6]
 
