@@ -6,9 +6,11 @@ navbar:
     - text: "About"
       href: about.html
     - icon: fa-envelope fa-lg
-      href: mailto:<you@youremail.com>
+      href: mailto:<elframme@hotmail.com>
     - icon: fa-github fa-lg
-      href: http://github.com/zanis_1899.github.io/
+      href: https://raarbiarsan1899.github.io/zanis_1899.github.io/index.html
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/zhou-fang-894274139/
    
 output:
   html_document
