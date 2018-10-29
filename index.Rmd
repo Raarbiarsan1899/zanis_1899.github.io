@@ -1,7 +1,43 @@
 ---
-title: "Resume"
+title: "Homepage"
 ---
 
-### Zanis Fang
+*Zanis Fang*
 
-<img src="./image/myself.JPG" style="width:100%">
+<img src="./image/myself.JPG" style="width:50%">
+
+### EDUCATION
+M.S., Biostatistics – Columbia University	2018 – 2020
+
+Ph.D, Genetics – Fudan University	2008 – 2015
+
+Bachelor of Science, Life Science – Fudan Unviersity 	2004 – 2008
+
+### WORK EXPERIENCE
+
+Postdoctoral scholar, Genome Science – Case Western Reserve University	2015–2018
+
+### SKILLS
+
+1. R programming:
+Flow cytometry data analysis
+Genome-wide CRISPR screen data analysis [1]
+
+2. Python
+Online courses
+
+3. Statistical analysis
+Multivariate regression, ROC curves [2]
+
+4. Meta-analysis
+Systematical gene-expression analysis [3]
+
+5. Molecular and cell biology
+Stem-cell differentiation, Lentivirus [1], CRISPR [1], Chromosome Conformation Capture
+
+### PUBLICATION
+[1] Zhou Fang, Chen Weng, Ran Tao, Haiyan Li, Xiaoxiao Liu, Grace Bogos, Yanxin Pei, FulaiJin, Yan Li. Single cell heterogeneity analysis and CRISPR screen identify key β cell-specific disease genes. Cell Reports. (under minor revision)
+
+[2] Fang Z, Zhou L, Bao Y, Ding W, Shi H, Luo X, Hu R. Association of NT-proBNP and multiple biomarkers with severity of angiographic coronary artery disease in diabetic and pre-diabetic Chinese patients. PLoS One. 2011;6(8):e22563.
+
+[3] Fang Z, Zhou L, Jiang S, Cao L, Yu L. UNC50 prompts G1/S transition and proliferation in HCC by regulation of epidermal growth factor receptor trafficking. PLoS One. 2015 Mar 4;10(3):e0119338.
