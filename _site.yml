@@ -3,6 +3,8 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
+    - text: ""
+      href: 
     - text: "About"
       href: about.html
     - icon: fa-envelope fa-lg
@@ -11,8 +13,12 @@ navbar:
       href: https://github.com/Raarbiarsan1899
     - icon: fa-linkedin fa-lg
       href: https://linkedin.com/in/zhou-fang-894274139
-    - icon: fa-wechat fa-lg
-      href: wechat.html
-   
+    - text: "Projects"
+      icon: fa-gear
+      menu:
+        - text: "p8105 - Data Science"
+        - text: "Homework 4"
+          href: https://github.com/Raarbiarsan1899/zanis_1899.github.io
+        
 output:
   html_document

@@ -55,3 +55,7 @@ Stem-cell differentiation [unpbulished], lentivirus [1], genome editing [1], Chr
 [7] Tang ZH, **Fang Z**, Zhou L. Human genetics of diabetic vascular complications. J Genet. 2013 Dec;92(3):677-94.
 
 [8] Tang ZH, **Fang Z**, Zeng F, Li Z, Zhou L. Association and interaction analysis of metabolic syndrome and serum uric acid on diastolic heart failure. J Endocrinol Invest. 2013 Sep;36(8):579-83.
+
+
+
+
