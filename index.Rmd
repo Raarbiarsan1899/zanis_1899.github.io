@@ -2,6 +2,6 @@
 title: "Resume"
 ---
 
-### Zanis
+### Zanis Fang
 
-<img src="./image/Zanis.jpg" style="width:100%">
+<img src="./image/myself.JPG" style="width:100%">
