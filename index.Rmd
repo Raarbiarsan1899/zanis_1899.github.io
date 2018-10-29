@@ -1,7 +1,7 @@
 ---
-title: "Holy cow!"
+title: "Resume"
 ---
 
-### I have a webpage!
+### Zanis
 
-And I can put all kinds of stuff on it!
+<img src="./image/Zanis.jpg" style="width:100%">
