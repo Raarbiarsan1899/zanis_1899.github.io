@@ -1,0 +1,51 @@
+---
+title: "NYC Restaurant Inspections"
+author: 'Zanis Fang, UID: ZF2213'
+date: "10/29/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+# install.packages("pacman") when necessary
+pacman::p_load(arules, arulesViz)
+
+set.seed(67)
+# sample a subset of instacart
+instacart <- p8105.datasets::instacart %>%
+	filter(order_id %in% sample(unique(order_id), 10000))
+	
+# get order_id with less than 30 items
+sample_list <- instacart %>% 
+	distinct(order_id, product_id) %>%
+	group_by(order_id) %>% 
+	summarize(n_items = n()) %>%
+	filter(n_items <= 30)
+
+instacart_sample <- instacart %>% 
+	filter(order_id %in% sample_list$order_id)
+
+instacart_raw <- p8105.datasets::instacart
+instacart_transactions <- as(split(instacart_raw$product_id, instacart_raw$order_id), "transactions")
+summary(instacart_transactions)
+instacart_rules <- apriori(instacart_transactions,
+													 parameter = list(supp = 0.001, conf = 0.8))
+
+instacart_rules[1:10]
+
+arules::itemFrequencyPlot(instacart_transactions,
+													topN = 20,
+													# col = brewer.pal(8,'Pastel2'),
+													main = 'Relative Item Frequency Plot',
+													type = "relative",
+													ylab = "Item Frequency (Relative)")
+
+
+
+```
+
