@@ -3,8 +3,6 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: ""
-      href: 
     - text: "About"
       href: about.html
     - icon: fa-envelope fa-lg
@@ -21,6 +19,8 @@ navbar:
         - text: "p8105 - Data Science"
         - text: "Homework 4"
           href: https://github.com/Raarbiarsan1899/zanis_1899.github.io
+        - text: "Instacart data visualization"
+          href: hw4_dashboard.html
         
 output:
   html_document

@@ -1,0 +1,128 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Order frequency
+
+```{r histogram_order_frequency}
+
+# loading data
+instacart_raw <- p8105.datasets::instacart
+
+
+instacart_raw %>% 
+	distinct(order_id, days_since_prior_order) %>% 
+	plot_ly(x = ~days_since_prior_order, type = "histogram") %>% 
+	layout(
+		xaxis = list(title = "Days since prior order"),
+		yaxis = list(title = "Number of orders with this frequency")
+	)
+	
+```
+
+### Order frequency vs order size
+
+```{r  boxplot_frequency_vs_quantity}
+
+# plotly, order frequency and number of items in an order
+instacart_raw %>% 
+	group_by(order_id) %>% 
+	mutate(items_ordered = n()) %>% 
+	distinct(items_ordered, days_since_prior_order) %>% 
+	plot_ly(x = ~as.factor(days_since_prior_order),
+					y = ~log(items_ordered, 2),
+					type = "box") %>% 
+	layout(
+				 xaxis = list(title = "Days since prior order (Day)"),
+				 yaxis = list(title = "Log-2 transformed order size")
+				 )
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Time series - "Survival" of an aisle from repeating order
+
+```{r scatter_nth_orders_vs_normalized_order_num}
+
+# plotly
+instacart_raw %>% 
+	group_by(order_number) %>% 
+	mutate(n_order = n()) %>%
+	group_by(order_number, aisle, n_order) %>%
+	summarize(aisle_n_order = n()) %>%
+  ungroup() %>% 
+	mutate(order_mix = paste(order_number, n_order, sep = "/")) %>%
+	select(aisle_n_order, aisle, order_mix) %>%
+  spread(key = order_mix, value = aisle_n_order, fill = NA) %>%
+	gather(key = order_mix, value = aisle_n_order, "10/60216":"99/250") %>%
+	separate(order_mix, into = c("order_number", "n_order"), sep = "/") %>%
+	mutate(order_number = as.numeric(order_number),
+				 n_order = as.numeric(n_order)) %>%
+	mutate(aisle_n_order = ifelse(!is.na(aisle_n_order),
+																			 log(aisle_n_order / n_order, 2),
+																			 -10)) %>% 
+  filter(aisle %in% sample(unique(aisle), 134)) %>% 
+	plot_ly(x = ~order_number, y = ~aisle_n_order, type = "scatter", mode = "markers",
+					color = ~aisle,
+					text = ~aisle
+					) %>% 
+	layout(
+		xaxis = list(title = "nth order"),
+		yaxis = list(title = "log2-transformed normalized order number")
+	)
+	
+```	
+
+
+### Frequently bought together with aisle "cereal"
+
+
+```{r bar_frequently_bought_with_cereal}
+# which ordered most or least frequently with cereal
+
+with_cereal <- instacart_raw %>% 
+	group_by(aisle) %>% 
+	mutate(n_aisle = n()) %>%
+	group_by(order_id) %>% 
+	# if cereal in aisle
+	mutate(has_cereal = "cereal" %in% aisle) %>%
+	filter(has_cereal == TRUE) %>% 
+	group_by(aisle, n_aisle) %>% 
+	summarize(ratio_with_cereal = n()) %>%
+	mutate(ratio_with_cereal = ratio_with_cereal / n_aisle) %>% 
+	ungroup()
+
+top_cereal <- rbind(
+  with_cereal %>%
+	  top_n(11, ratio_with_cereal) %>% 
+	  mutate(is_top = "top"),
+  with_cereal %>%
+	  top_n(-10, ratio_with_cereal) %>% 
+	  mutate(is_top = "bottom")
+  ) %>% 
+	filter(aisle != "cereal")
+
+# plotly	  
+top_cereal %>% 
+	plot_ly(x = ~reorder(aisle, rank(ratio_with_cereal)),
+					y = ~ratio_with_cereal,
+					type = "bar",
+					color = ~ is_top)
+
+```
+
