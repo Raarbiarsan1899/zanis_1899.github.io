@@ -12,40 +12,140 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-# install.packages("pacman") when necessary
-pacman::p_load(arules, arulesViz)
 
-set.seed(67)
-# sample a subset of instacart
-instacart <- p8105.datasets::instacart %>%
-	filter(order_id %in% sample(unique(order_id), 10000))
-	
-# get order_id with less than 30 items
-sample_list <- instacart %>% 
-	distinct(order_id, product_id) %>%
-	group_by(order_id) %>% 
-	summarize(n_items = n()) %>%
-	filter(n_items <= 30)
-
-instacart_sample <- instacart %>% 
-	filter(order_id %in% sample_list$order_id)
+library(plotly)
 
 instacart_raw <- p8105.datasets::instacart
-instacart_transactions <- as(split(instacart_raw$product_id, instacart_raw$order_id), "transactions")
-summary(instacart_transactions)
-instacart_rules <- apriori(instacart_transactions,
-													 parameter = list(supp = 0.001, conf = 0.8))
 
-instacart_rules[1:10]
+instacart_raw %>%
+	filter(reordered == 1) %>%
+	group_by(product_name) %>% 
+	summarize(n_reordered = n()) %>% 
+	top_n(10) %>%
+	ggplot(aes(x = product_name, y = n_reordered)) +
+	  geom_point()
 
-arules::itemFrequencyPlot(instacart_transactions,
-													topN = 20,
-													# col = brewer.pal(8,'Pastel2'),
-													main = 'Relative Item Frequency Plot',
-													type = "relative",
-													ylab = "Item Frequency (Relative)")
+instacart_raw %>% 
+	distinct(order_id, order_hour_of_day, order_dow) %>% 
+	ggplot(aes(order_hour_of_day)) + 
+	  geom_density() + 
+	  facet_grid(. ~ order_dow)
+
+instacart_raw %>% 
+	ggplot(aes(y = days_since_prior_order)) +
+	  geom_boxplot()
 
 
+# order frequency and number of items in an order
+instacart_raw %>% 
+	group_by(order_id) %>% 
+	mutate(items_ordered = n()) %>%
+	distinct(items_ordered, days_since_prior_order) %>% 
+	ggplot(aes(y = log(items_ordered), x = as.factor(days_since_prior_order))) +
+	  geom_boxplot()
+	
+instacart_raw %>% 
+	group_by(order_id) %>% 
+	mutate(items_ordered = n()) %>% 
+	distinct(items_ordered, days_since_prior_order) %>% 
+	plot_ly(x = ~as.factor(days_since_prior_order),
+					y = ~log(items_ordered),
+					type = "box")
+
+
+
+# trends over order_number
+instacart_raw %>% 
+	group_by(order_number, aisle) %>% 
+	summarize(n_order = n()) %>% 
+	ggplot(aes(y = log(n_order), x = order_number, color = aisle)) +
+	  geom_point(show.legend = FALSE) +
+	  geom_smooth(show.legend = FALSE)
+
+set.seed(67)
+instacart_raw %>% 
+	group_by(order_number, aisle) %>% 
+	summarize(n_order = n()) %>%
+	ungroup() %>% 
+	filter(aisle %in% sample(unique(aisle), 5)) %>% 
+	plot_ly(x = ~order_number, y = ~log(n_order), type = "scatter", mode = "markers",
+					color = ~aisle,
+					text = ~aisle
+					)
+	
+	
+# take a view of several aisle
+instacart_raw %>% 
+	group_by(order_number, aisle) %>% 
+	summarize(n_order = n()) %>%
+	ungroup() %>% 
+	filter(aisle %in% sample(unique(aisle), 5)) %>% 
+	ggplot(aes(y = log(n_order), x = order_number)) +
+	  geom_point(aes(color = aisle)) +
+	  facet_grid(. ~ aisle) +
+	  geom_smooth(method = lm)
+
+nest_instacart <- instacart_raw %>% 
+	group_by(order_number, aisle) %>% 
+	summarize(n_order = n()) %>% 
+	ungroup() %>%
+	nest(c(n_order, order_number))
+
+
+
+instacart_lm <- function(df) {
+	lm(log(n_order) ~ order_number, data = df)
+}
+
+lm_instacart <- map(nest_instacart$data, function(x) instacart_lm(x)$coefficients[2])
+
+nest_instacart %>%
+	mutate(beta1 = unlist(lm_instacart)) %>% 
+	arrange(beta1) %>% View
+
+instacart_raw %>% distinct(aisle) %>% View
+
+
+# each user only ordered once
+instacart_raw %>% 
+	distinct(user_id, order_id) %>%
+	group_by(user_id) %>% 
+	summarize(n_order = n()) %>%
+	arrange(desc(n_order))
+
+# which ordered most frequently with cereal
+
+with_cereal <- instacart_raw %>% 
+	group_by(aisle) %>% 
+	mutate(n_aisle = n()) %>%
+	group_by(order_id) %>% 
+	# if cereal in aisle
+	mutate(has_cereal = "cereal" %in% aisle) %>%
+	filter(has_cereal == TRUE) %>% 
+	group_by(aisle, n_aisle) %>% 
+	summarize(ratio_with_cereal = n()) %>%
+	mutate(ratio_with_cereal = ratio_with_cereal / n_aisle) %>% 
+	ungroup()
+
+top_cereal <- rbind(
+  with_cereal %>%
+	  top_n(11, ratio_with_cereal) %>% 
+	  mutate(is_top = "top"),
+  with_cereal %>%
+	  top_n(-10, ratio_with_cereal) %>% 
+	  mutate(is_top = "bottom")
+  ) %>% 
+	filter(aisle != "cereal")
+
+top_cereal %>% 
+	ggplot(aes(x = reorder(aisle, rank(ratio_with_cereal)), y = ratio_with_cereal)) +
+	  geom_bar(stat = "identity")
+	  
+top_cereal %>% 
+	plot_ly(x = ~reorder(aisle, rank(ratio_with_cereal)),
+					y = ~ratio_with_cereal,
+					type = "bar",
+					color = ~ is_top)
 
 ```
 
