@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-
 library(plotly)
 
 instacart_raw <- p8105.datasets::instacart
@@ -22,19 +21,37 @@ instacart_raw %>%
 	group_by(product_name) %>% 
 	summarize(n_reordered = n()) %>% 
 	top_n(10) %>%
-	ggplot(aes(x = product_name, y = n_reordered)) +
+	ggplot(aes(x = reorder(product_name, n_reordered), y = n_reordered)) +
 	  geom_point()
 
 instacart_raw %>% 
 	distinct(order_id, order_hour_of_day, order_dow) %>% 
 	ggplot(aes(order_hour_of_day)) + 
-	  geom_density() + 
-	  facet_grid(. ~ order_dow)
+	  geom_density()
 
 instacart_raw %>% 
-	ggplot(aes(y = days_since_prior_order)) +
+	plot_ly(x = ~order_hour_of_day, color = ~as.factor(order_dow), type = "histogram")
+
+instacart_raw %>% 
+	group_by(order_number) %>% 
+	summarize(total_orders = n()) %>% 
+	ggplot(aes(x = order_number, y = total_orders)) +
+	  geom_point()
+
+
+instacart_raw %>% 
+	distinct(order_number, order_hour_of_day) %>% 
+	ggplot(aes(y = order_hour_of_day, x = as.factor(order_number))) +
 	  geom_boxplot()
 
+instacart_raw %>% 
+	distinct(order_number, order_dow) %>% 
+	ggplot(aes(y = order_dow, x = as.factor(order_number))) +
+	  geom_boxplot()
+
+```
+
+```{r boxplot_frequency_vs_quantity}
 
 # order frequency and number of items in an order
 instacart_raw %>% 
@@ -43,7 +60,8 @@ instacart_raw %>%
 	distinct(items_ordered, days_since_prior_order) %>% 
 	ggplot(aes(y = log(items_ordered), x = as.factor(days_since_prior_order))) +
 	  geom_boxplot()
-	
+
+# plotly	
 instacart_raw %>% 
 	group_by(order_id) %>% 
 	mutate(items_ordered = n()) %>% 
@@ -51,9 +69,22 @@ instacart_raw %>%
 	plot_ly(x = ~as.factor(days_since_prior_order),
 					y = ~log(items_ordered),
 					type = "box")
+```
 
+```{r histogram_density_plot_order_frequency}
+instacart_raw %>% 
+	distinct(order_id, days_since_prior_order) %>% 
+	ggplot(aes(x = days_since_prior_order)) +
+	  geom_density()
 
+instacart_raw %>% 
+	distinct(order_id, days_since_prior_order) %>% 
+	plot_ly(x = ~days_since_prior_order, type = "histogram")
+	
+	
+```
 
+```{r scatter_orders_vs_order_num}
 # trends over order_number
 instacart_raw %>% 
 	group_by(order_number, aisle) %>% 
@@ -62,18 +93,6 @@ instacart_raw %>%
 	  geom_point(show.legend = FALSE) +
 	  geom_smooth(show.legend = FALSE)
 
-set.seed(67)
-instacart_raw %>% 
-	group_by(order_number, aisle) %>% 
-	summarize(n_order = n()) %>%
-	ungroup() %>% 
-	filter(aisle %in% sample(unique(aisle), 5)) %>% 
-	plot_ly(x = ~order_number, y = ~log(n_order), type = "scatter", mode = "markers",
-					color = ~aisle,
-					text = ~aisle
-					)
-	
-	
 # take a view of several aisle
 instacart_raw %>% 
 	group_by(order_number, aisle) %>% 
@@ -85,6 +104,40 @@ instacart_raw %>%
 	  facet_grid(. ~ aisle) +
 	  geom_smooth(method = lm)
 
+# plotly
+set.seed(67)
+instacart_raw %>% 
+	group_by(order_number) %>% 
+	summarize(n_order = n()) %>% 
+	ggplot(aes(x = order_number, y = log(n_order))) +
+	  geom_point()
+
+set.seed(50)
+instacart_raw %>% 
+	group_by(order_number) %>% 
+	mutate(n_order = n()) %>%
+	group_by(order_number, aisle, n_order) %>%
+	summarize(aisle_n_order = n()) %>%
+  ungroup() %>% 
+	mutate(order_mix = paste(order_number, n_order, sep = "/")) %>%
+	select(aisle_n_order, aisle, order_mix) %>%
+  spread(key = order_mix, value = aisle_n_order, fill = NA) %>%
+	gather(key = order_mix, value = aisle_n_order, "10/60216":"99/250") %>%
+	separate(order_mix, into = c("order_number", "n_order"), sep = "/") %>%
+	mutate(order_number = as.numeric(order_number),
+				 n_order = as.numeric(n_order)) %>%
+	mutate(aisle_n_order = ifelse(!is.na(aisle_n_order),
+																			 log(aisle_n_order / n_order),
+																			 -10)) %>% 
+  filter(aisle %in% sample(unique(aisle), 134)) %>% 
+	plot_ly(x = ~order_number, y = ~aisle_n_order, type = "scatter", mode = "markers",
+					color = ~aisle,
+					text = ~aisle
+					)
+	
+```	
+
+```{r practice_map_lists}
 nest_instacart <- instacart_raw %>% 
 	group_by(order_number, aisle) %>% 
 	summarize(n_order = n()) %>% 
@@ -102,17 +155,9 @@ lm_instacart <- map(nest_instacart$data, function(x) instacart_lm(x)$coefficient
 nest_instacart %>%
 	mutate(beta1 = unlist(lm_instacart)) %>% 
 	arrange(beta1) %>% View
+```
 
-instacart_raw %>% distinct(aisle) %>% View
-
-
-# each user only ordered once
-instacart_raw %>% 
-	distinct(user_id, order_id) %>%
-	group_by(user_id) %>% 
-	summarize(n_order = n()) %>%
-	arrange(desc(n_order))
-
+```{r bar_frequently_ordered_with_cereal}
 # which ordered most frequently with cereal
 
 with_cereal <- instacart_raw %>% 
@@ -140,7 +185,8 @@ top_cereal <- rbind(
 top_cereal %>% 
 	ggplot(aes(x = reorder(aisle, rank(ratio_with_cereal)), y = ratio_with_cereal)) +
 	  geom_bar(stat = "identity")
-	  
+
+# plotly	  
 top_cereal %>% 
 	plot_ly(x = ~reorder(aisle, rank(ratio_with_cereal)),
 					y = ~ratio_with_cereal,
