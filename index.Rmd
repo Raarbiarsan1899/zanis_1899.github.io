@@ -2,6 +2,10 @@
 title: "Homepage"
 author: 'Zanis Fang, UID: ZF2213'
 date: "11/1/2018"
+output:
+  html_document:
+    toc: true
+    toc_float: true
 
 ---
 
