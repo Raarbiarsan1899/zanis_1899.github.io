@@ -12,10 +12,10 @@ library(tidyverse)
 library(plotly)
 ```
 
-Column {data-width=350}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Order frequency
+### Order frequency -- note the periodical peak every 7 days
 
 ```{r histogram_order_frequency}
 
@@ -28,12 +28,13 @@ instacart_raw %>%
 	plot_ly(x = ~days_since_prior_order, type = "histogram") %>% 
 	layout(
 		xaxis = list(title = "Days since prior order"),
-		yaxis = list(title = "Number of orders with this frequency")
+		yaxis = list(title = "Number of orders with this frequency",
+								 range = c(0, 12000))
 	)
 	
 ```
 
-### Order frequency vs order size
+### Order frequency vs order size -- more frequent order has smaller order size
 
 ```{r  boxplot_frequency_vs_quantity}
 
@@ -52,10 +53,10 @@ instacart_raw %>%
 
 ```
 
-Column {data-width=650}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Time series - "Survival" of an aisle from repeating order
+### Time series -- survival analysis of aisle over repeating order
 
 ```{r scatter_nth_orders_vs_normalized_order_num}
 
@@ -75,7 +76,7 @@ instacart_raw %>%
 				 n_order = as.numeric(n_order)) %>%
 	mutate(aisle_n_order = ifelse(!is.na(aisle_n_order),
 																			 log(aisle_n_order / n_order, 2),
-																			 -10)) %>% 
+																			 -15)) %>% 
   filter(aisle %in% sample(unique(aisle), 134)) %>% 
 	plot_ly(x = ~order_number, y = ~aisle_n_order, type = "scatter", mode = "markers",
 					color = ~aisle,
@@ -89,7 +90,7 @@ instacart_raw %>%
 ```	
 
 
-### Frequently bought together with aisle "cereal"
+### Aisles frequently bought together with aisle "cereal"
 
 
 ```{r bar_frequently_bought_with_cereal}
@@ -122,7 +123,12 @@ top_cereal %>%
 	plot_ly(x = ~reorder(aisle, rank(ratio_with_cereal)),
 					y = ~ratio_with_cereal,
 					type = "bar",
-					color = ~ is_top)
+					color = ~ is_top) %>%
+	layout(
+		xaxis = list(title = "Aisle name"),
+		yaxis = list(title = "Percentage orders with cereal")
+	)
+
 
 ```
 
