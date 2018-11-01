@@ -2,18 +2,25 @@
 title: "Homepage"
 author: 'Zanis Fang, UID: ZF2213'
 date: "11/1/2018"
+
 ---
 
+### This is me
 <img src="./image/myself.JPG" style="width:50%">
+*Picture taken at the Grand Canyon*
 
 ### Description
 
-Hi everyone! This is my first website.
+Hi everyone! This is my first website. I swear I could have done better if I were not overwhelmed by homework (including this one).
 
 ### Dashboard
 
-This is my [dashboard](dashboard.html) for p8105 homework dashboard.
-The github link is https://github.com/Raarbiarsan1899/zanis_1899.github.io. 
+This is my [dashboard](hw4_dashboard.html) for p8105 homework 4.
+I tried to use Apriori Algorithm to get frequently bought together list but I failed...
+
+### Github link
+
+The github link for this website is https://github.com/Raarbiarsan1899/zanis_1899.github.io. 
 
 ### Resume
 

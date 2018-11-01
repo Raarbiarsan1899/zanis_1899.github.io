@@ -19,8 +19,6 @@ navbar:
       icon: fa-gear
       menu:
         - text: "p8105 - Data Science"
-        - text: "Homework 4"
-          href: https://github.com/Raarbiarsan1899/zanis_1899.github.io
         - text: "Instacart data visualization"
           href: hw4_dashboard.html
         
