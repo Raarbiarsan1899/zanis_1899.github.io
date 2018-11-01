@@ -1,63 +1,21 @@
 ---
 title: "Homepage"
+author: 'Zanis Fang, UID: ZF2213'
+date: "11/1/2018"
 ---
-
-
-
-*Zanis Fang*
 
 <img src="./image/myself.JPG" style="width:50%">
 
-### EDUCATION
-M.S., Biostatistics – Columbia University	2018 – 2020
+### Description
 
-Ph.D, Genetics – Fudan University	2008 – 2015
+Hi everyone! This is my first website.
 
-Bachelor of Science, Life Science – Fudan Unviersity 	2004 – 2008
+### Dashboard
 
-### WORK EXPERIENCE
+This is my [dashboard](dashboard.html) for p8105 homework dashboard.
+The github link is https://github.com/Raarbiarsan1899/zanis_1899.github.io. 
 
-Postdoctoral scholar, Genome Science – Case Western Reserve University	2015–2018
+### Resume
 
-### SKILLS
-
-**R programming**
-
-Flow cytometry data analysis, genome-wide CRISPR screen data analysis [1]
-
-**Python**
-
-Practice through several online courses
-
-**Statistical analysis**
-
-Multivariate regression, ROC curves [2], Genome-wide association study [7, 8]
-
-**Meta-analysis**
-
-Systematical gene-expression analysis [3]
-
-**Molecular and cell biology**
-
-Stem-cell differentiation [unpbulished], lentivirus [1], genome editing [1], Chromosome Conformation Capture [unpublished], general molecular and cell biology [1, 3, 4, 5, 6]
-
-### PUBLICATION
-[1] **Zhou Fang**, Chen Weng, Ran Tao, Haiyan Li, Xiaoxiao Liu, Grace Bogos, Yanxin Pei, FulaiJin, Yan Li. Single cell heterogeneity analysis and CRISPR screen identify key β cell-specific disease genes. Cell Reports. (under minor revision)
-
-[2] **Fang Z**, Zhou L, Bao Y, Ding W, Shi H, Luo X, Hu R. Association of NT-proBNP and multiple biomarkers with severity of angiographic coronary artery disease in diabetic and pre-diabetic Chinese patients. PLoS One. 2011;6(8):e22563.
-
-[3] **Fang Z**, Zhou L, Jiang S, Cao L, Yu L. UNC50 prompts G1/S transition and proliferation in HCC by regulation of epidermal growth factor receptor trafficking. PLoS One. 2015 Mar 4;10(3):e0119338.
-
-[4] Xian L, Zhao J, Wang J, **Fang Z**, Peng B, Wang W, Ji X, Yu L. p53 Promotes proteasome-dependent degradation of oncogenic protein HBx by transcription of MDM2. MolBiol Rep. 2010 Jul;37(6):2935-40.
-
-[5] Zhao J, Wang C, Wang J, Yang X, Diao N, Li Q, Wang W, Xian L, **Fang Z**, Yu L. E3 ubiquitin ligase Siah-1 facilitates poly-ubiquitylation and proteasomal degradation of the hepatitis B viral X protein. FEBS Lett. 2011 Oct 3;585(19):2943-50.
-
-[6] Bao YY, **Fang Z**, Zhou LN, Hu RM, Ding W. [Effect of adipose differentiation-related protein on the apoptosis of H9c2 cells by palmitic acid]. Xi Bao Yu Fen ZiMian Yi XueZaZhi. 2011 Apr;27(4):382-5. Chinese.
-
-[7] Tang ZH, **Fang Z**, Zhou L. Human genetics of diabetic vascular complications. J Genet. 2013 Dec;92(3):677-94.
-
-[8] Tang ZH, **Fang Z**, Zeng F, Li Z, Zhou L. Association and interaction analysis of metabolic syndrome and serum uric acid on diastolic heart failure. J Endocrinol Invest. 2013 Sep;36(8):579-83.
-
-
-
+Please take a look at my [resume](resume.html) and hire me!
 
