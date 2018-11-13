@@ -1,65 +1,102 @@
 ---
-title: "Resume — Zanis Fang"
-output:
-  html_document:
-    toc: true
-    toc_float: true
+output: html_document
+
 ---
 
-*Zanis Fang*
-elframme@hotmail.com
-tel: (216)801-1399
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-### EDUCATION
-M.S., Biostatistics – Columbia University	2018 – 2020
+<center><h3> ZHOU FANG, PH.D. </h3></center>
 
-Ph.D, Genetics – Fudan University	2008 – 2015
+<center> *100 Haven Ave., 19F, New York, NY, 10032* </center>
 
-Bachelor of Science, Life Science – Fudan Unviersity 	2004 – 2008
+<center> *Tel: (216) 801-1399 Email: zf2213@cumc.columbia.edu* </center>
 
-### WORK EXPERIENCE
+<br>
 
-Postdoctoral scholar, Genome Science – Case Western Reserve University	2015–2018
+#### WORK 
 
-### SKILLS
++ <p align = "text-align: left;"> Postdoctoral Scholar, Genomic and Genetic – Case Western Reserve University <span style  = "float: right;"> 2015 – 2018 </span> </p>
 
-**R programming**
+#### EDUCATION 
 
-Flow cytometry data analysis, genome-wide CRISPR screen data analysis [1]
++ <p align = "text-align: left;"> M.S, Biostatistics – Columbia University <span style  = "float: right;"> 2018 - 2020 (expected) </span> </p>
 
-**Python**
++ <p align = "text-align: left;"> Ph.D, Biology/Genetics – Fudan University <span style  = "float: right;"> 2008 – 2015 </span> </p>
 
-Practice through several online courses
++ <p align = "text-align: left;"> Bachelor of Science, Biological Science – Fudan University <span style  = "float: right;"> 2004 – 2008 </span> </p>
 
-**Statistical analysis**
+<br>
 
-Multivariate regression, ROC curves [2], Genome-wide association study [7, 8]
+#### MAJOR RESEARCH FIELDS
 
-**Meta-analysis**
++ **Genome-wide CRISPR Screening** [1 and several additional manuscripts under preparation]
 
-Systematical gene-expression analysis [3]
+  *Short description*: Genome-wide CRISPR screening is a powerful tool to investigate gene functions. However, the difficult parts are the unbiased amplification of sgRNA library at plasmid, virus, and cell levels. During my postdoctoral study, I successfully established a genome-wide CRISPR screening platform for a newly formed research team, and applied it on hESC differentiation system and MIN6 cells. Besides, I self-studied R programming and accomplished the data anlysis tasks assigned by the team principle investigator.
 
-**Molecular and cell biology**
+  *Roles*: genome editing, cell culturing, embryonic stem cell culturing, flow cytometry data analysis (R), virus culturing, library preparation, GO analysis (PANTHER), gene pathway analysis (STRING, Cytoscape)
 
-Stem-cell differentiation [unpbulished], lentivirus [1], genome editing [1], Chromosome Conformation Capture [unpublished], general molecular and cell biology [1, 3, 4, 5, 6]
++ **Cardiovascular co-morbidities in type II diabetes patients** [2, 6, 7, 8]
 
-### PUBLICATION
-[1] **Zhou Fang**, Chen Weng, Ran Tao, Haiyan Li, Xiaoxiao Liu, Grace Bogos, Yanxin Pei, FulaiJin, Yan Li. Single cell heterogeneity analysis and CRISPR screen identify key β cell-specific disease genes. Cell Reports. (under minor revision)
+  *Short description*: According to epidemic studies, half of diabetes patients will develop cardiovascular diseases. However, the prognosis varies from person to person. Molecular markers, SNPs can be powerful in predicting the clinical implications of diabetes patients with heart diseases. I did a stepwise multivariate linear regression to find relation between several serum markers and cardiovascular implications using SPSS. I also participated in a gene function study and an environment-gene interaction study.
 
-[2] **Fang Z**, Zhou L, Bao Y, Ding W, Shi H, Luo X, Hu R. Association of NT-proBNP and multiple biomarkers with severity of angiographic coronary artery disease in diabetic and pre-diabetic Chinese patients. PLoS One. 2011;6(8):e22563.
+  *Roles*: data collecting, data cleaning (SPSS), performing stepwise multivariate regression, drawing ROC curve
 
-[3] **Fang Z**, Zhou L, Jiang S, Cao L, Yu L. UNC50 prompts G1/S transition and proliferation in HCC by regulation of epidermal growth factor receptor trafficking. PLoS One. 2015 Mar 4;10(3):e0119338.
++ **Functional study of dysregulated proteins in hepatocellular carcinoma** [3, 4, 5]
 
-[4] Xian L, Zhao J, Wang J, **Fang Z**, Peng B, Wang W, Ji X, Yu L. p53 Promotes proteasome-dependent degradation of oncogenic protein HBx by transcription of MDM2. MolBiol Rep. 2010 Jul;37(6):2935-40.
+  Protein expression are dramatically changed in malignant tumor cells. Dysregulation of some essential proteins, such as P53, contributes greatly in the progression of many kinds of cancers. In this project, I assessed several dysregulated proteins on cell growth, apoptosis of liver cancer cell lines in vitro. In particular, I designed, conducted, and published a research paper as first author.
 
-[5] Zhao J, Wang C, Wang J, Yang X, Diao N, Li Q, Wang W, Xian L, **Fang Z**, Yu L. E3 ubiquitin ligase Siah-1 facilitates poly-ubiquitylation and proteasomal degradation of the hepatitis B viral X protein. FEBS Lett. 2011 Oct 3;585(19):2943-50.
+  *Roles*: genome editing, virus culturing, bacteria culturing, flow cytometry, DNA transfection, meta-analysis of gene-expression, viral DNA and RNA quantification, in-vivo protein half-life analysis, co-immunoprecipitation
 
-[6] Bao YY, **Fang Z**, Zhou LN, Hu RM, Ding W. [Effect of adipose differentiation-related protein on the apoptosis of H9c2 cells by palmitic acid]. Xi Bao Yu Fen ZiMian Yi XueZaZhi. 2011 Apr;27(4):382-5. Chinese.
+<br>
 
-[7] Tang ZH, **Fang Z**, Zhou L. Human genetics of diabetic vascular complications. J Genet. 2013 Dec;92(3):677-94.
+#### SKILLS
 
-[8] Tang ZH, **Fang Z**, Zeng F, Li Z, Zhou L. Association and interaction analysis of metabolic syndrome and serum uric acid on diastolic heart failure. J Endocrinol Invest. 2013 Sep;36(8):579-83.
++ **Molecule and cell biology**: 8 years benchwork experience, CRISPR screening, lentivirus production, stem cell culturing, Hiseq-2500 DNA library preparation, Gibson Assembly, Chromosome Conformation Capture (3C), protein purification (Tn5 protein), cell staining and flow cytometry, primer design, and basic skills like PCR, Western blotting.
 
++ **Bioinformatics**: Famaliar with UCSC genome browser, GEO database, low throughput DNA alignment (Vector NTI), Pathway analysis (STRING, Cytoscape), GO analysis (Panther), flowCore package (R)
 
++ **Biostatistics**: 2 years work experience, data cleaning, stepwise multivariate regression analysis, ROC curve, meta analysis, basic hypothesis testing
 
++ **R programming**: 1 year work experience, flow cytometry single-cell data analysis, practice through several courses
 
++ **Python**: practice through several courses
+
+<br>
+
+#### PROFESSIONAL EXPERIENCE 
+
++ <p align = "text-align: left;"> Research assistant – Huashan Hospital, Fudan University <span style  = "float: right;"> 2008 – 2010 </span> </p>
+
+#### AWARDS 
+
++ <p align = "text-align: left;"> 3rd Prize Scholarship <span style  = "float: right;"> 2010 – 2011 </span> </p>
+
++ <p align = "text-align: left;"> 2nd Prize Scholarship <span style  = "float: right;"> 2011 – 2012 </span> </p>
+
+<br>
+
+#### PUBLICATIONS
+
+1. **Zhou Fang**, Chen Weng, Ran Tao, Haiyan Li, Xiaoxiao Liu, Grace Bogos, Yanxin Pei, FulaiJin, Yan Li. Single cell heterogeneity analysis and CRISPR screen identify key β cell-specific disease genes. *Cell Reports*. *Minor revision*
+
+2. **Fang Z**, Zhou L, Bao Y, Ding W, Shi H, Luo X, Hu R. Association of NT-proBNP and multiple biomarkers with severity of angiographic coronary artery disease in diabetic and pre-diabetic Chinese patients. *PLoS One*. 2011;6(8):e22563. 
+
+3. **Fang Z**, Zhou L, Jiang S, Cao L, Yu L. UNC50 prompts G1/S transition and proliferation in HCC by regulation of epidermal growth factor receptor trafficking. *PLoS One*. 2015 Mar 4;10(3):e0119338. 
+
+4. Xian L, Zhao J, Wang J, **Fang Z**, Peng B, Wang W, Ji X, Yu L. p53 Promotes proteasome-dependent degradation of oncogenic protein HBx by transcription of MDM2. MolBiol Rep. 2010 Jul;37(6):2935-40. 
+
+5. Zhao J, Wang C, Wang J, Yang X, Diao N, Li Q, Wang W, Xian L, **Fang Z**, Yu L. E3 ubiquitin ligase Siah-1 facilitates poly-ubiquitylation and proteasomal degradation of the hepatitis B viral X protein. FEBS Lett. 2011 Oct 3;585(19):2943-50. 
+ 
+6. Bao YY, **Fang Z**, Zhou LN, Hu RM, Ding W. [Effect of adipose differentiation-related protein on the apoptosis of H9c2 cells by palmitic acid]. Xi Bao Yu Fen ZiMian Yi XueZaZhi. 2011 Apr;27(4):382-5. Chinese. 
+
+7. Tang ZH, **Fang Z**, Zhou L. Human genetics of diabetic vascular complications. J Genet. 2013 Dec;92(3):677-94. 
+
+8. Tang ZH, **Fang Z**, Zeng F, Li Z, Zhou L. Association and interaction analysis of metabolic syndrome and serum uric acid on diastolic heart failure. J Endocrinol Invest. 2013 Sep;36(8):579-83. 
+
+ 
+
+ 
+
+ 
